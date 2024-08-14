@@ -4,7 +4,7 @@ agent any
 stages
 {
  stage('scm checkout')
- { steps { git branch: 'master', url: 'https://github.com/prakashk0301/mavenproject' }}
+ { steps { git branch: 'master', url: 'https://github.com/ARUNMAHANWAR/mavenproject' }}
 
 
  stage('code compile')
@@ -25,7 +25,7 @@ stages
  stage('deploy to tomcat server-Dev-Automated')
   {steps { sshagent(['deploy-to-tomcat']) 
    {
-    sh 'scp -o StrictHostKeyChecking=no webapp/target/webapp.war ec2-user@172.31.20.221:/usr/share/tomcat/webapps'
+    sh 'scp -o StrictHostKeyChecking=no webapp/target/webapp.war ec2-user@172.31.0.191:/usr/share/tomcat/webapps'
 
    } }}
 
@@ -34,7 +34,7 @@ stages
    { steps { sshagent(['deploy-to-tomcat']) 
     {
       input 'Do you approve deployment?'              // Conditional delivery
-      sh 'scp -o StrictHostKeyChecking=no webapp/target/webapp.war ec2-user@172.31.20.221:/usr/share/tomcat/webapps'
+      sh 'scp -o StrictHostKeyChecking=no webapp/target/webapp.war ec2-user@172.31.0.191:/usr/share/tomcat/webapps'
             }
       }
     }
